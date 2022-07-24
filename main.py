@@ -152,8 +152,10 @@ def main() -> None:
     if not os.path.exists("users"):
         os.makedirs("users")
     """Start the bot."""
+    time.sleep(3)
     # Create the Application and pass it your bot's token.
     application = Application.builder().token(TELEGRAM_TOEKN).build()
+    time.sleep(3)
     bot = application.bot
     # on different commands - answer in Telegram
     application.add_handler(CommandHandler("start", start))

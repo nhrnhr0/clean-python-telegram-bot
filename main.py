@@ -1,6 +1,7 @@
 
 import logging
 import os
+from decouple import config
 
 from telegram import ForceReply, Update
 from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
@@ -27,7 +28,7 @@ async def help_command(update: Update, context) -> None:
     """Send a message when the command /help is issued."""
     await update.message.reply_text("Help!")
 
-ADMIN_LOGS_CHAT_ID = os.environ.get("ADMIN_LOGS_CHAT_ID")
+ADMIN_LOGS_CHAT_ID = config("ADMIN_LOGS_CHAT_ID")
 # on any other message (incoming messages, images, videos, audio, etc) - replay to the admin chat, send a tumbs up emoji to the user, and store the last message from the user with the user id, message, and timestamp
 async def bot_reviced_message(update: Update, context) -> None:
     create_user_id_file(update.effective_user)
@@ -141,7 +142,6 @@ async def notification_thread(bot):
                 continue
     
 
-from decouple import config
 TELEGRAM_TOEKN = config("TELEGRAM_TOKEN")
 def main() -> None:
     if not os.path.exists("last_notifications"):

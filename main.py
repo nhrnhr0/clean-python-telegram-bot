@@ -92,6 +92,7 @@ def notification_thread_caller(bot):
     loop.run_until_complete(notification_thread(bot))
     loop.close()
 async def notification_thread(bot):
+    
     while True:
             time.sleep(5)
             try:
@@ -142,6 +143,14 @@ async def notification_thread(bot):
 TELEGRAM_TOEKN = os.environ.get("TELEGRAM_TOKEN")
 
 def main() -> None:
+    if not os.path.exists("last_notifications"):
+        os.makedirs("last_notifications")
+    if not os.path.exists("last_messages"):
+        os.makedirs("last_messages")
+    if not os.path.exists("messages"):
+        os.makedirs("messages")
+    if not os.path.exists("users"):
+        os.makedirs("users")
     """Start the bot."""
     # Create the Application and pass it your bot's token.
     application = Application.builder().token(TELEGRAM_TOEKN).build()

@@ -1,0 +1,8 @@
+.env
+env
+last_messages/*
+last_notifications/*
+messages/*
+users/*
+
+__pycache__/

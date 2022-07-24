@@ -140,8 +140,9 @@ async def notification_thread(bot):
                 logger.error(f"Error in notification thread: {e}")
                 continue
     
-TELEGRAM_TOEKN = os.environ.get("TELEGRAM_TOKEN")
 
+from decouple import config
+TELEGRAM_TOEKN = config("TELEGRAM_TOKEN")
 def main() -> None:
     if not os.path.exists("last_notifications"):
         os.makedirs("last_notifications")
@@ -154,7 +155,7 @@ def main() -> None:
     """Start the bot."""
     time.sleep(3)
     # Create the Application and pass it your bot's token.
-    application = Application.builder().token(TELEGRAM_TOEKN).build()
+    application = Application.builder().token(TELEGRAM_TOEKN.strip()).build()
     time.sleep(3)
     bot = application.bot
     # on different commands - answer in Telegram

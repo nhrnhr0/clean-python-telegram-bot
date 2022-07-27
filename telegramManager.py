@@ -96,5 +96,5 @@ async def send_nofication(bot, dbUser):
     MongoDB.getInstance().save_last_notification(user_id)
     await bot.send_message(chat_id=user_id, text=message)
     #logger.info(f"Notification sent to {chat_id}")
-    name = dbUser.get('telegram_info').get('username')
-    await bot.send_message(chat_id=ADMIN_LOGS_CHAT_ID, text=f"Notification sent to {name}")
+    #name = dbUser.get('telegram_info').get('username')
+    await bot.send_message(chat_id=ADMIN_LOGS_CHAT_ID, text=f"Notification sent to {user_id}")

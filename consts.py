@@ -6,3 +6,25 @@ NOTIFICATION_MESSAGE = '''
 כדי שמחר יצא פוסט קטלני🔥
 ספר בקצרה מה קרה חדש בעסק שלך🤗
 '''
+SET_ALERT_DAYS_MESSAGE = '''
+בחר ימים בהם תרצה לקבל התראה
+'''
+SET_NOTIFICATION_MESSAGE = '''
+אנחנו נזכיר לך כל יום בשעה <b>{}</b>
+התראה הבאה בעוד <b>{}</b>
+לשינוי השעה כתוב את השעה הרצוייה בפורמט הבא: HH:MM
+'''
+
+SET_NOTIFICATION_MESSAGE_ERROR = '''
+השעה שהכנסת לא תקינה, אנא נסה שוב בפורמט הבא: HH:MM
+לדוגמא: 08:00 או 15:05
+'''
+
+SUCCESS_NOTIFICATION_MESSAGE = '''
+שעת ההתראה החדשה שלך היא <b>{}</b> 🚀
+התראה הבאה בעוד <b>{}</b>
+'''
+
+NEXT_NOTIFICATION_TIME_MESSAGE = '''
+ההתראה הבאה מכוונת ל{}, בעוד {}
+'''

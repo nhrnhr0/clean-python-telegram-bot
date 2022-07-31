@@ -10,7 +10,7 @@ from myLogger import logger
 def notification_thread_caller(bot,):
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
-
+    
     loop.run_until_complete(notification_thread(bot))
     loop.close()
 async def notification_thread(bot):

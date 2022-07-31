@@ -48,6 +48,7 @@ class TelegramManager:
         ]
         loop = asyncio.get_event_loop()
         set_commands = loop.run_until_complete(self.bot.set_my_commands(my_commands))
+        print('======> done setting commands')
         #loop.close()
 
         
@@ -64,7 +65,9 @@ class TelegramManager:
         self.application.add_handler(MessageHandler(filters.ALL, bot_reviced_message))
 
         # start the thread that will check if the user need to be notified
-        self.notification_thread_t = threading.Thread(target=notification_thread_caller, args=(self.bot,)).start()
+        self.notification_thread_t = threading.Thread(target=notification_thread_caller, args=(self.bot,))
+        self.notification_thread_t.daemon = True
+        self.notification_thread_t.start()
         
         
     def start(self):
@@ -144,9 +147,16 @@ async def set_alert_time_clicked(update: Update, context) -> None:
             else:
                 await msg.reply_text(SET_NOTIFICATION_MESSAGE_ERROR)
     else:
-        message_html =  SET_NOTIFICATION_MESSAGE.format(current_alert_time)
+        next_notification = MongoDB.getInstance().get_user_next_notification_time(user.id)
+        next_notification_in_secounds = (next_notification-datetime.datetime(1970,1,1, tzinfo=pytz.timezone('Israel'))).total_seconds()
+        now_in_secounds = (datetime.datetime.now(tz=pytz.utc) - datetime.datetime(1970,1,1, tzinfo=pytz.timezone('UTC'))).total_seconds()
+        
+        time_left = next_notification_in_secounds - now_in_secounds#datetime.datetime.now(tz=pytz.utc) - next_notification
+        time_left_str = datetime.timedelta(seconds=time_left)
+        time_left_str = td_format(time_left_str)
+        message_html =  SET_NOTIFICATION_MESSAGE.format(current_alert_time,time_left_str)
         #await query.(message_html, reply_markup=ForceReply())
-        await update.effective_user.send_message(message_html,)
+        await update.effective_user.send_message(message_html,parse_mode='HTML')
     return None
 
 def td_format(td_object):

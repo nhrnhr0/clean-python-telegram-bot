@@ -15,7 +15,7 @@ import json
 def main() -> None:
     print('starting the bot')
     TelegramManager.getInstance().start()
-    print('bot is started')
+    #print('bot is started')
     # Create the Application and pass it your bot's token.
     
 

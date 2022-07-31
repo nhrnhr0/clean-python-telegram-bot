@@ -80,7 +80,7 @@ class MongoDB:
         # get the user's time preferences
         time_preferences = self.get_user_time_preferences(dbUser['_id'])
         # get the user's week days preferences
-        week_days_preferences = dbUser['preferences']['alert']['week_days']
+        week_days_preferences = self.get_user_week_days_preferences(dbUser['_id']) #dbUser['preferences']['alert']['week_days']
         # get the current time
         current_time = datetime.datetime.now(pytz.timezone('Israel'))
         next_alert =  current_time.replace(hour=int(time_preferences[:2]), minute=int(time_preferences[3:]))

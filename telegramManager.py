@@ -1,5 +1,4 @@
 from multiprocessing.dummy import Array
-from turtle import up
 from telegram import ForceReply, InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 from consts import GREET_MESSAGE, NOTIFICATION_MESSAGE, SET_NOTIFICATION_MESSAGE, SET_NOTIFICATION_MESSAGE_ERROR,SUCCESS_NOTIFICATION_MESSAGE,SET_ALERT_DAYS_MESSAGE,NEXT_NOTIFICATION_TIME_MESSAGE
